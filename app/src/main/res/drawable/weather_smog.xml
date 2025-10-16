@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Линии смога -->
+    <path
+        android:fillColor="#9E9E9E"
+        android:pathData="M3,15h18c0.55,0 1,-0.45 1,-1s-0.45,-1 -1,-1H3c-0.55,0 -1,0.45 -1,1s0.45,1 1,1zM3,19h18c0.55,0 1,-0.45 1,-1s-0.45,-1 -1,-1H3c-0.55,0 -1,0.45 -1,1s0.45,1 1,1zM3,11h18c0.55,0 1,-0.45 1,-1s-0.45,-1 -1,-1H3c-0.55,0 -1,0.45 -1,1s0.45,1 1,1z" />
+
+    <!-- Частицы смога как маленькие кружки -->
+    <path
+        android:fillColor="#9E9E9E"
+        android:pathData="M8,8a2,2 0,1 1,0 -4,2,2 0,1 1,0 4z" />
+    <path
+        android:fillColor="#9E9E9E"
+        android:pathData="M16,6a1,1 0,1 1,0 -2,1,1 0,1 1,0 2z" />
+
+</vector>

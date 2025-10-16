@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">topPlaygroundXML</string>
+
+    <!-- Main Activity -->
+    <string name="main_title">ГОЙДААА!</string>
+    <string name="car_list">Список автомобилей</string>
+    <string name="weather_button">Погода</string>
+
+    <!-- Weather Activity -->
+    <string name="weather_title">Прогноз погоды</string>
+    <string name="enter_city_hint">Введите город</string>
+    <string name="moscow_default">Москва</string>
+    <string name="search_icon">🔍</string>
+    <string name="current_weather_title">Текущая погода</string>
+    <string name="loading_weather">Загрузка...</string>
+    <string name="city_not_found">Город не найден</string>
+    <string name="forecast_title">Прогноз на 7 дней</string>
+    <string name="weather_data_placeholder">Данные о погоде появятся здесь</string>
+
+    <!-- Weather Details -->
+    <string name="weather_details_format">Погода: %1$s\nТемпература: днем %2$d°C, ночью %3$d°C\nВетер: %4$s м/с</string>
+    <string name="wind_emoji">💨</string>
+    <string name="na">N/A</string>
+
+    <string name="loading_weather_for">Загружаем погоду для %s</string>
+    <string name="today">Сегодня</string>
+    <string name="day_temperature">День: %d°C</string>
+    <string name="night_temperature">Ночь: %d°C</string>
+    <string name="max_wind">Ветер: %d м/с</string>
+    <string name="temperature_format">Температура: днем %d°C, ночью %d°C</string>
+    <string name="weather_error">Ошибка: %s</string>
+</resources>

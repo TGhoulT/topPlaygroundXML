@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="any">#FF3ED1C7</color>
+
+    <!-- Дополнительные цвета для погоды -->
+    <color name="weather_text_light">#FFFFFF</color>
+    <color name="weather_text_dark">#212121</color>
+    <color name="card_background">#F5F5F5</color>
+    <color name="text_secondary">#666666</color>
+
+    <color name="hot_weather">#FFFF9800</color>
+    <color name="cold_weather">#FF2196F3</color>
+    <color name="normal_weather">#FFFFFFFF</color>
+</resources>
