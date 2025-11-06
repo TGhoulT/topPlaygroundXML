@@ -9,9 +9,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.topplaygroundxml.R
-import com.example.topplaygroundxml.data.remote.DataSeries
-import com.example.topplaygroundxml.data.remote.RetrofitClient
-import com.example.topplaygroundxml.data.remote.WeatherResponse
+import com.example.topplaygroundxml.data.mapper.WeatherMapper
+import com.example.topplaygroundxml.data.repository.WeatherRepositoryImpl
 import com.example.topplaygroundxml.databinding.ActivityWeatherBinding
 import com.example.topplaygroundxml.domain.model.WeatherType
 import kotlinx.coroutines.CoroutineScope
@@ -25,16 +24,9 @@ class WeatherActivity : AppCompatActivity() {
     private lateinit var adapter: WeatherAdapter
     private val TAG = "WeatherApp"
 
-    //координаты городов (расширить потом)
-    private val cityCoordinates = mapOf(
-        "Москва" to Pair(55.7558, 37.6173),
-        "Санкт-Петербург" to Pair(59.9311, 30.3609),
-        "Сочи" to Pair(43.5855, 39.7231),
-        "Челябинск" to Pair(55.1644, 61.4368),
-        "Новосибирск" to Pair(55.0084, 82.9357),
-        "Екатеринбург" to Pair(56.8389, 60.6057),
-        "Владивосток" to Pair(43.1155, 131.8855)
-    )
+    private val repository by lazy {
+        WeatherRepositoryImpl(WeatherMapper())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,36 +60,16 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun fetchWeatherForCity(cityName: String) {
-        val coordinates = cityCoordinates[cityName] ?: run {
-            binding.currentWeatherText.text = getString(R.string.city_not_found)
-            return
-        }
-
-        val (latitude, longitude) = coordinates
-
         binding.currentWeatherText.text = getString(R.string.loading_weather_for, cityName)
         binding.funnyDescriptionText.text = ""
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val weatherData = RetrofitClient.weatherApi.getWeatherForecast(
-                    longitude = longitude,
-                    latitude = latitude
-                )
-
-                // ДОБАВИМ ЛОГИРОВАНИЕ ДЛЯ ДИАГНОСТИКИ
-                Log.d(TAG, "=== RAW API RESPONSE ===")
-                Log.d(TAG, "Product: ${weatherData.product}")
-                Log.d(TAG, "Init: ${weatherData.init}")
-                weatherData.dataseries.forEachIndexed { index, data ->
-                    Log.d(TAG, "Day $index: weather='${data.weather}', temp2m=${data.temp2m}")
-                }
-
-                // выводим в лог
-                logWeatherData(weatherData, cityName)
+                val forecastList = repository.getWeatherForecast(cityName)
 
                 withContext(Dispatchers.Main) {
-                    displayWeather(weatherData, cityName)
+                    displayWeather(forecastList, cityName)
+                    logWeatherData(forecastList, cityName)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
@@ -108,36 +80,33 @@ class WeatherActivity : AppCompatActivity() {
         }
     }
 
-    private fun logWeatherData(weatherResponse: WeatherResponse, cityName: String) {
+    private fun logWeatherData(forecastList: List<com.example.topplaygroundxml.domain.model.WeatherForecast>, cityName: String) {
         Log.d(TAG, "=== ПРОГНОЗ ПОГОДЫ НА НЕДЕЛЮ ===")
         Log.d(TAG, "Город: $cityName")
-        Log.d(TAG, "Продукт: ${weatherResponse.product}")
-        Log.d(TAG, "Время инициализации: ${weatherResponse.init}")
-        Log.d(TAG, "Количество дней: ${weatherResponse.dataseries.size}")
+        Log.d(TAG, "Количество дней: ${forecastList.size}")
 
-        weatherResponse.dataseries.forEachIndexed { index, day ->
-            // Преобразуем domain WeatherType в UI-представление для логирования
+        forecastList.forEachIndexed { index, day ->
             val domainWeatherType = WeatherType.fromApiString(day.weather)
             val weatherTypeDisplay = WeatherTypeDisplay.fromDomain(domainWeatherType)
 
             Log.d(TAG, "-------------------")
             Log.d(TAG, "День ${index + 1}:")
-            Log.d(TAG, "• Дата: ${day.date}")
+            Log.d(TAG, "• Дата: ${day.date} (${day.formattedDate})")
+            Log.d(TAG, "• День недели: ${day.dayOfWeek}")
             Log.d(TAG, "• Погода: ${weatherTypeDisplay.displayName} ${weatherTypeDisplay.emoji}")
-            Log.d(TAG, "• Температура: макс ${day.temp2m.max}°C, мин ${day.temp2m.min}°C")
+            Log.d(TAG, "• Температура: макс ${day.maxTemp}°C, мин ${day.minTemp}°C")
             Log.d(TAG, "• Шутка: ${weatherTypeDisplay.funnyDescription}")
-            day.wind10m_max?.let { windMax ->
+            day.windSpeed?.let { windMax ->
                 Log.d(TAG, "• Максимальный ветер: $windMax м/с")
             }
         }
         Log.d(TAG, "=== КОНЕЦ ПРОГНОЗА ===")
     }
 
-    private fun displayWeather(weatherResponse: WeatherResponse, cityName: String) {
-        val currentDay = weatherResponse.dataseries.firstOrNull()
+    private fun displayWeather(forecastList: List<com.example.topplaygroundxml.domain.model.WeatherForecast>, cityName: String) {
+        val currentDay = forecastList.firstOrNull()
 
         if (currentDay != null) {
-            // преобразуем domain WeatherType в UI-представление
             val domainWeatherType = WeatherType.fromApiString(currentDay.weather)
             val weatherTypeDisplay = WeatherTypeDisplay.fromDomain(domainWeatherType)
 
@@ -146,25 +115,24 @@ class WeatherActivity : AppCompatActivity() {
 
             binding.currentWeatherText.text =
                 "$cityName: ${weatherTypeDisplay.displayName} ${weatherTypeDisplay.emoji}\n" +
-                        getString(R.string.temperature_format, currentDay.temp2m.max, currentDay.temp2m.min)
+                        getString(R.string.temperature_format, currentDay.maxTemp, currentDay.minTemp)
 
             binding.funnyDescriptionText.text = weatherTypeDisplay.funnyDescription
 
-            adapter.updateList(weatherResponse.dataseries)
+            adapter.updateList(forecastList)
         }
     }
 
-    private fun showWeatherDetails(weatherData: DataSeries) {
-        // преобразуем для деталей
+    private fun showWeatherDetails(weatherData: com.example.topplaygroundxml.domain.model.WeatherForecast) {
         val domainWeatherType = WeatherType.fromApiString(weatherData.weather)
         val weatherTypeDisplay = WeatherTypeDisplay.fromDomain(domainWeatherType)
 
         val message = getString(
             R.string.weather_details_format,
             weatherTypeDisplay.displayName,
-            weatherData.temp2m.max,
-            weatherData.temp2m.min,
-            weatherData.wind10m_max ?: getString(R.string.na)
+            weatherData.maxTemp,
+            weatherData.minTemp,
+            weatherData.windSpeed ?: getString(R.string.na)
         )
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
