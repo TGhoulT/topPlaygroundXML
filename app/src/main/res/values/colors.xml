@@ -13,4 +13,9 @@
     <color name="hot_weather">#FFFF9800</color>
     <color name="cold_weather">#FF2196F3</color>
     <color name="normal_weather">#FFFFFFFF</color>
+
+    <!-- Цвета калькулятора -->
+    <color name="light_gray">#A5A5A5</color>
+    <color name="dark_gray">#333333</color>
+    <color name="orange">#FF9500</color>
 </resources>

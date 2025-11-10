@@ -56,6 +56,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")//Конвертер JSON
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")//Для логирования работы с сетью
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")//Корутины
+    implementation("io.insert-koin:koin-android:3.4.0")//Koin
+    implementation("net.objecthunter:exp4j:0.4.8")//эксп4ж для калькулятора1
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

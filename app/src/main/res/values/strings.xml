@@ -5,6 +5,7 @@
     <string name="main_title">ГОЙДААА!</string>
     <string name="car_list">Список автомобилей</string>
     <string name="weather_button">Погода</string>
+    <string name="calculator_button">Калькулятор</string>
 
     <!-- Weather Activity -->
     <string name="weather_title">Прогноз погоды</string>
@@ -21,7 +22,6 @@
     <string name="weather_details_format">Погода: %1$s\nТемпература: днем %2$d°C, ночью %3$d°C\nВетер: %4$s м/с</string>
     <string name="wind_emoji">💨</string>
     <string name="na">N/A</string>
-
     <string name="loading_weather_for">Загружаем погоду для %s</string>
     <string name="today">Сегодня</string>
     <string name="day_temperature">День: %d°C</string>
@@ -29,4 +29,65 @@
     <string name="max_wind">Ветер: %d м/с</string>
     <string name="temperature_format">Температура: днем %d°C, ночью %d°C</string>
     <string name="weather_error">Ошибка: %s</string>
+
+    <!-- Calculator -->
+    <string name="calculator_title">Калькулятор</string>
+    <string name="default_expression">0</string>
+    <string name="default_result">0</string>
+    <string name="clear">C</string>
+    <string name="cancel">⌫</string>
+    <string name="percent">%</string>
+    <string name="equals">=</string>
+    <string name="decimal">.</string>
+    <string name="zero">0</string>
+    <string name="double_zero">00</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="invalid_expression">Неверное математическое выражение</string>
+
+
+    <!-- Calculator symbols -->
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="multiply">×</string>
+    <string name="divide">÷</string>
+
+
+    <!-- Car List -->
+    <string name="year_format">Год: %d</string>
+    <string name="price_format">Цена: %d ₽</string>
+    <string name="car_list_title">Список автомобилей</string>
+
+    <!-- Months -->
+    <string name="january">января</string>
+    <string name="february">февраля</string>
+    <string name="march">марта</string>
+    <string name="april">апреля</string>
+    <string name="may">мая</string>
+    <string name="june">июня</string>
+    <string name="july">июля</string>
+    <string name="august">августа</string>
+    <string name="september">сентября</string>
+    <string name="october">октября</string>
+    <string name="november">ноября</string>
+    <string name="december">декабря</string>
+
+    <!-- Days of week -->
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="sunday">Воскресенье</string>
+
+    <!-- Weather Repository -->
+    <string name="city_not_found_error">Город %s не найден</string>
 </resources>

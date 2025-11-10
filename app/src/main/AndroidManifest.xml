@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +15,8 @@
         android:theme="@style/Theme.TopPlaygroundXML"
         android:usesCleartextTraffic="true"> <!--добавочка -->
         <activity
-            android:name=".presentation.main.MainActivity"
+            android:name=".features.main.presentation.ui.MainActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.carlist.SecondActivity"/>
-        <activity android:name=".presentation.weather.WeatherActivity"/>
+        <activity android:name=".features.carlist.presentation.ui.SecondActivity"/>
+        <activity android:name=".features.weather.presentation.ui.WeatherActivity"/>
+        <activity
+            android:name=".features.calculator.presentation.ui.CalculatorActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
