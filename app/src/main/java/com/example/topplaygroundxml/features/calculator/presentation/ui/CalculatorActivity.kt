@@ -89,4 +89,9 @@ class CalculatorActivity : AppCompatActivity() {
         binding.buttonEquals.setOnClickListener { viewModel.onEqualsClick() }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }
