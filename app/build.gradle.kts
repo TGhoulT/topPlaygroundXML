@@ -60,4 +60,6 @@ dependencies {
     implementation("net.objecthunter:exp4j:0.4.8")//эксп4ж для калькулятора1
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+
 }

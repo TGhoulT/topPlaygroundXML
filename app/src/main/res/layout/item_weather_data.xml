@@ -30,7 +30,7 @@
                 android:id="@+id/dateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10 октября"
+                android:text="@string/day_of_month_example"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 
@@ -38,14 +38,14 @@
                 android:id="@+id/dayOfWeekText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Пятница"
+                android:text="@string/name_of_day_example"
                 android:textSize="@dimen/text_size_medium" />
 
             <TextView
                 android:id="@+id/weatherDescriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Облачно"
+                android:text="@string/type_of_weather_example"
                 android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
@@ -60,7 +60,7 @@
                 android:id="@+id/dayTempText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="14°C"
+                android:text="@string/day_temperature_example"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 
@@ -68,14 +68,14 @@
                 android:id="@+id/nightTempText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9°C"
+                android:text="@string/night_temperature_example"
                 android:textSize="@dimen/text_size_medium" />
 
             <TextView
                 android:id="@+id/windText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="💨 3 м/с"
+                android:text="@string/wind_value_example"
                 android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>

@@ -24,7 +24,7 @@ class WeatherAdapter(
 
             // Используем уже отформатированные данные из domain модели
             val displayDate = if (weatherForecast.isToday)
-                binding.root.context.getString(R.string.today)
+                itemView.context.getString(R.string.today)
             else
                 weatherForecast.formattedDate
 
@@ -33,12 +33,12 @@ class WeatherAdapter(
             binding.dateText.text = displayDate
             binding.dayOfWeekText.text = displayDayOfWeek
             binding.weatherDescriptionText.text = weatherTypeDisplay.displayNameShort
-            binding.dayTempText.text = binding.root.context.getString(R.string.day_temperature, weatherForecast.maxTemp)
-            binding.nightTempText.text = binding.root.context.getString(R.string.night_temperature, weatherForecast.minTemp)
+            binding.dayTempText.text = itemView.context.getString(R.string.day_temperature, weatherForecast.maxTemp)
+            binding.nightTempText.text = itemView.context.getString(R.string.night_temperature, weatherForecast.minTemp)
             binding.weatherIcon.setImageResource(weatherTypeDisplay.drawableResId)
 
             weatherForecast.windSpeed?.let { windMax ->
-                binding.windText.text = binding.root.context.getString(R.string.max_wind, windMax)
+                binding.windText.text = itemView.context.getString(R.string.max_wind, windMax)
             }
 
             // Меняем цвет карточки в зависимости от температуры
@@ -47,7 +47,7 @@ class WeatherAdapter(
                 weatherForecast.maxTemp < 0 -> R.color.cold_weather
                 else -> R.color.normal_weather
             }
-            binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, backgroundColor))
+            binding.root.setCardBackgroundColor(ContextCompat.getColor(itemView.context, backgroundColor))
 
             binding.root.setOnClickListener {
                 onItemClick(weatherForecast)

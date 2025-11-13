@@ -1,6 +1,5 @@
 package com.example.topplaygroundxml.features.carlist.presentation.ui
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +8,7 @@ import com.example.topplaygroundxml.databinding.ItemCarBinding
 import com.example.topplaygroundxml.features.carlist.domain.model.Car
 
 class CarAdapter(
-    private var carList: List<Car>,
-    private val context: Context
+    private var carList: List<Car>
 ) : RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
 
     inner class CarViewHolder(
@@ -19,9 +17,9 @@ class CarAdapter(
 
         fun bind(car: Car) {
             binding.brandModelText.text = "${car.brand} ${car.model}"
-            binding.yearText.text = context.getString(R.string.year_format, car.year)
+            binding.yearText.text = itemView.context.getString(R.string.year_format, car.year)
             binding.descriptionText.text = car.description
-            binding.priceText.text = context.getString(R.string.price_format, car.cost)
+            binding.priceText.text = itemView.context.getString(R.string.price_format, car.cost)
             binding.carImage.setImageResource(car.imageResId)
         }
     }

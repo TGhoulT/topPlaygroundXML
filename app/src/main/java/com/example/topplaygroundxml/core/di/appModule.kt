@@ -8,15 +8,14 @@ import com.example.topplaygroundxml.features.calculator.presentation.viewmodel.C
 import com.example.topplaygroundxml.features.weather.data.mapper.WeatherMapper
 import com.example.topplaygroundxml.features.weather.data.repository.WeatherRepositoryImpl
 import com.example.topplaygroundxml.features.weather.domain.repository.WeatherRepository
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
     // Погода
     single { RetrofitClient.weatherApi }
-    single<WeatherRepository> { WeatherRepositoryImpl(get(), androidContext()) }
-    single { WeatherMapper(androidContext()) }
+    single<WeatherRepository> { WeatherRepositoryImpl(get(), get()) }
+    single { WeatherMapper(get()) }
 
     // Калькулятор
     single<CalculatorRepository> { CalculatorRepositoryImpl() }

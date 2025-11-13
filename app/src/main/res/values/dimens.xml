@@ -47,5 +47,7 @@
     <dimen name="calculator_display_text_size_small">32sp</dimen>
     <dimen name="calculator_button_margin">4dp</dimen>
     <dimen name="calculator_display_padding">20dp</dimen>
+    <dimen name="calculator_button_corner_radius">100dp</dimen>
+    <dimen name="calculator_frame_padding">8dp</dimen>
 
 </resources>

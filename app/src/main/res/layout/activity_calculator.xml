@@ -23,7 +23,7 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="@dimen/calculator_display_padding"
         android:background="@color/black">
 
         <TextView
@@ -32,10 +32,10 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/zero"
-            android:textSize="32sp"
+            android:textSize="@dimen/calculator_display_text_size_small"
             android:textColor="@color/white"
             android:gravity="end"
-            android:padding="8dp"
+            android:padding="@dimen/calculator_frame_padding"
             tools:ignore="NestedWeights" />
 
         <TextView
@@ -44,11 +44,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/zero"
-            android:textSize="48sp"
+            android:textSize="@dimen/calculator_display_text_size_large"
             android:textColor="@color/white"
             android:gravity="end"
             android:textStyle="bold"
-            android:padding="8dp" />
+            android:padding="@dimen/calculator_frame_padding" />
 
     </LinearLayout>
 
@@ -59,7 +59,7 @@
         android:layout_weight="3"
         android:orientation="vertical"
         android:background="@color/black"
-        android:padding="8dp"
+        android:padding="@dimen/calculator_frame_padding"
         android:gravity="center">
 
         <!-- Первый ряд -->
@@ -77,11 +77,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/clear"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/light_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/black"
                 tools:ignore="NestedWeights" />
 
@@ -90,11 +90,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/cancel"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/light_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/black" />
 
             <com.google.android.material.button.MaterialButton
@@ -102,11 +102,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/percent"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/light_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/black" />
 
             <com.google.android.material.button.MaterialButton
@@ -114,11 +114,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/divide"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/orange"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -137,11 +137,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/seven"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -149,11 +149,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/eight"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -161,11 +161,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/nine"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -173,11 +173,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/multiply"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/orange"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -196,11 +196,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/four"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -208,11 +208,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/five"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -220,11 +220,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/six"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -232,11 +232,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/minus"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/orange"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -255,11 +255,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/one"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -267,11 +267,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/two"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -279,11 +279,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/three"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -291,11 +291,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/plus"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/orange"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -314,11 +314,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/double_zero"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -326,11 +326,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/zero"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -338,11 +338,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/decimal"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/dark_gray"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -350,11 +350,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/calculator_button_margin"
                 android:text="@string/equals"
-                android:textSize="18sp"
+                android:textSize="@dimen/calculator_button_text_size"
                 app:backgroundTint="@color/orange"
-                app:cornerRadius="100dp"
+                app:cornerRadius="@dimen/calculator_button_corner_radius"
                 android:textColor="@color/white" />
 
         </LinearLayout>

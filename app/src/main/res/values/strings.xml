@@ -30,6 +30,14 @@
     <string name="temperature_format">Температура: днем %d°C, ночью %d°C</string>
     <string name="weather_error">Ошибка: %s</string>
 
+    <string name="day_of_month_example">10 октября</string>
+    <string name="name_of_day_example">Пятница</string>
+    <string name="type_of_weather_example">Облачно</string>
+    <string name="day_temperature_example">14°C</string>
+    <string name="night_temperature_example">9°C</string>
+    <string name="wind_value_example">💨 3 м/с</string>
+
+
     <!-- Calculator -->
     <string name="calculator_title">Калькулятор</string>
     <string name="default_expression">0</string>
@@ -53,17 +61,24 @@
     <string name="invalid_expression">Неверное математическое выражение</string>
 
 
+    <!-- Car List -->
+    <string name="year_format">Год: %d</string>
+    <string name="price_format">Цена: %d ₽</string>
+    <string name="car_list_title">Список автомобилей</string>
+
+    <!-- Car details -->
+    <string name="brand_model">Brand Model</string>
+    <string name="year_car">Brand Model</string>
+    <string name="description_car">Brand Model</string>
+    <string name="price_car">Price</string>
+
+
     <!-- Calculator symbols -->
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="multiply">×</string>
     <string name="divide">÷</string>
 
-
-    <!-- Car List -->
-    <string name="year_format">Год: %d</string>
-    <string name="price_format">Цена: %d ₽</string>
-    <string name="car_list_title">Список автомобилей</string>
 
     <!-- Months -->
     <string name="january">января</string>

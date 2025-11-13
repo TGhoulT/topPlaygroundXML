@@ -75,7 +75,7 @@ class SecondActivity : AppCompatActivity() {
             )
         )
 
-        val adapter = CarAdapter(carList, this)
+        val adapter = CarAdapter(carList)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
     }
