@@ -1,71 +1,50 @@
 package com.example.topplaygroundxml.features.main.presentation.ui
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.example.topplaygroundxml.R
 import com.example.topplaygroundxml.databinding.ActivityMainBinding
-import com.example.topplaygroundxml.features.calculator.presentation.ui.CalculatorActivity
-import com.example.topplaygroundxml.features.carlist.presentation.ui.SecondActivity
-import com.example.topplaygroundxml.features.weather.presentation.ui.WeatherActivity
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        binding.carListButton.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.weatherButton.setOnClickListener {
-            val intent = Intent(this, WeatherActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.calculatorButton.setOnClickListener {
-            val intent = Intent(this, CalculatorActivity::class.java)
-            startActivity(intent)
+        // Ждем, когда view будет готово
+        binding.root.post {
+            setupNavigation()
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
+    private fun setupNavigation() {
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
-    override fun onStop() {
-        super.onStop()
-    }
+        // Настройка BottomNavigationView (без ActionBar)
+        binding.bottomNavigationView.setupWithNavController(navController)
 
-    override fun onRestart() {
-        super.onRestart()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+        // Скрывать BottomNavigationView на экранах авторизации
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.loginFragment, R.id.registrationFragment -> {
+                    binding.bottomNavigationView.visibility = View.GONE
+                    // Скрываем ActionBar если он есть
+                    supportActionBar?.hide()
+                }
+                else -> {
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+                    // Показываем ActionBar если он есть
+                    supportActionBar?.show()
+                }
+            }
+        }
     }
 }

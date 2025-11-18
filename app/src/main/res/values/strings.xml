@@ -1,14 +1,29 @@
 <resources>
     <string name="app_name">topPlaygroundXML</string>
 
+    <!-- Auth -->
+    <string name="login">Вход</string>
+    <string name="registration">Регистрация</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="login_button">Войти</string>
+    <string name="register_button">Зарегистрироваться</string>
+    <string name="no_account">Нет аккаунта? Зарегистрируйтесь</string>
+    <string name="have_account">Есть аккаунт? Войдите</string>
+
+    <!-- Иконки для bottom navigation -->
+    <string name="weather_title">Погода</string>
+    <string name="calculator_title">Калькулятор</string>
+    <string name="car_list_title">Автомобили</string>
+
     <!-- Main Activity -->
     <string name="main_title">ГОЙДААА!</string>
     <string name="car_list">Список автомобилей</string>
     <string name="weather_button">Погода</string>
     <string name="calculator_button">Калькулятор</string>
 
-    <!-- Weather Activity -->
-    <string name="weather_title">Прогноз погоды</string>
+    <!-- Weather -->
     <string name="enter_city_hint">Введите город</string>
     <string name="moscow_default">Москва</string>
     <string name="search_icon">🔍</string>
@@ -37,49 +52,6 @@
     <string name="night_temperature_example">9°C</string>
     <string name="wind_value_example">💨 3 м/с</string>
 
-
-    <!-- Calculator -->
-    <string name="calculator_title">Калькулятор</string>
-    <string name="default_expression">0</string>
-    <string name="default_result">0</string>
-    <string name="clear">C</string>
-    <string name="cancel">⌫</string>
-    <string name="percent">%</string>
-    <string name="equals">=</string>
-    <string name="decimal">.</string>
-    <string name="zero">0</string>
-    <string name="double_zero">00</string>
-    <string name="one">1</string>
-    <string name="two">2</string>
-    <string name="three">3</string>
-    <string name="four">4</string>
-    <string name="five">5</string>
-    <string name="six">6</string>
-    <string name="seven">7</string>
-    <string name="eight">8</string>
-    <string name="nine">9</string>
-    <string name="invalid_expression">Неверное математическое выражение</string>
-
-
-    <!-- Car List -->
-    <string name="year_format">Год: %d</string>
-    <string name="price_format">Цена: %d ₽</string>
-    <string name="car_list_title">Список автомобилей</string>
-
-    <!-- Car details -->
-    <string name="brand_model">Brand Model</string>
-    <string name="year_car">Brand Model</string>
-    <string name="description_car">Brand Model</string>
-    <string name="price_car">Price</string>
-
-
-    <!-- Calculator symbols -->
-    <string name="plus">+</string>
-    <string name="minus">-</string>
-    <string name="multiply">×</string>
-    <string name="divide">÷</string>
-
-
     <!-- Months -->
     <string name="january">января</string>
     <string name="february">февраля</string>
@@ -105,4 +77,42 @@
 
     <!-- Weather Repository -->
     <string name="city_not_found_error">Город %s не найден</string>
+
+    <!-- Calculator -->
+    <string name="default_expression">0</string>
+    <string name="default_result">0</string>
+    <string name="clear">C</string>
+    <string name="cancel">⌫</string>
+    <string name="percent">%</string>
+    <string name="equals">=</string>
+    <string name="decimal">.</string>
+    <string name="zero">0</string>
+    <string name="double_zero">00</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="invalid_expression">Неверное математическое выражение</string>
+
+    <!-- Calculator symbols -->
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="multiply">×</string>
+    <string name="divide">÷</string>
+
+    <!-- Car List -->
+    <string name="year_format">Год: %d</string>
+    <string name="price_format">Цена: %d ₽</string>
+
+    <!-- Car details -->
+    <string name="brand_model">Brand Model</string>
+    <string name="year_car">Brand Model</string>
+    <string name="description_car">Brand Model</string>
+    <string name="price_car">Price</string>
+
 </resources>

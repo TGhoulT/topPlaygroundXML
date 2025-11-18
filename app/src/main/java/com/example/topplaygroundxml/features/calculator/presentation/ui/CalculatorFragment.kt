@@ -1,56 +1,60 @@
 package com.example.topplaygroundxml.features.calculator.presentation.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.topplaygroundxml.databinding.ActivityCalculatorBinding
+import com.example.topplaygroundxml.databinding.FragmentCalculatorBinding
 import com.example.topplaygroundxml.features.calculator.presentation.viewmodel.CalculatorViewModel
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CalculatorActivity : AppCompatActivity() {
+class CalculatorFragment : Fragment() {
 
-    private lateinit var binding: ActivityCalculatorBinding
+    private var _binding: FragmentCalculatorBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: CalculatorViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCalculatorBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        setupToolbar()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setupObservers()
         setupListeners()
     }
 
-    private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
     private fun setupObservers() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.expression.collectLatest { expression ->
+                viewModel.expression.collect { expression ->
                     binding.expressionText.text = expression
                 }
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.result.collectLatest { result ->
+                viewModel.result.collect { result ->
                     binding.resultText.text = result
                 }
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.error.collectLatest { error ->
+                viewModel.error.collect { error ->
                     error?.let {
                         binding.resultText.text = it
                     }
@@ -79,7 +83,7 @@ class CalculatorActivity : AppCompatActivity() {
         binding.buttonMultiply.setOnClickListener { viewModel.onOperationClick("×") }
         binding.buttonDivide.setOnClickListener { viewModel.onOperationClick("÷") }
 
-        // Процент - отдельный обработчик
+        // Процент
         binding.buttonPercent.setOnClickListener { viewModel.onPercentageClick() }
 
         // Функциональные кнопки
@@ -89,9 +93,8 @@ class CalculatorActivity : AppCompatActivity() {
         binding.buttonEquals.setOnClickListener { viewModel.onEqualsClick() }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
 }
