@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.topplaygroundxml.R
 import com.example.topplaygroundxml.databinding.FragmentRegistrationBinding
 import com.example.topplaygroundxml.features.auth.presentation.viewmodel.AuthViewModel
+import com.example.topplaygroundxml.features.auth.presentation.viewmodel.state.RegisterState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,24 +43,24 @@ class RegistrationFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.registerState.collect { state ->
                     when (state) {
-                        is AuthViewModel.RegisterState.Loading -> {
+                        is RegisterState.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                             binding.registerButton.isEnabled = false
                             binding.errorText.visibility = View.GONE
                         }
-                        is AuthViewModel.RegisterState.Success -> {
+                        is RegisterState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             binding.registerButton.isEnabled = true
                             // После успешной регистрации возвращаемся на экран входа
                             findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
                         }
-                        is AuthViewModel.RegisterState.Error -> {
+                        is RegisterState.Error -> {
                             binding.progressBar.visibility = View.GONE
                             binding.registerButton.isEnabled = true
                             binding.errorText.text = state.message
                             binding.errorText.visibility = View.VISIBLE
                         }
-                        is AuthViewModel.RegisterState.Idle -> {
+                        is RegisterState.Idle -> {
                             binding.progressBar.visibility = View.GONE
                             binding.registerButton.isEnabled = true
                             binding.errorText.visibility = View.GONE

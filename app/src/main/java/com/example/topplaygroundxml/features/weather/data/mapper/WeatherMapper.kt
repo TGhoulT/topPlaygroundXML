@@ -11,52 +11,69 @@ class WeatherMapper(
 ) {
 
     fun toWeatherForecastList(weatherResponse: WeatherResponse): List<WeatherForecast> {
-        return weatherResponse.dataseries.map { dataSeries ->
-            WeatherForecast(
-                date = dataSeries.date,
-                formattedDate = formatDate(dataSeries.date),
-                dayOfWeek = getDayOfWeek(dataSeries.date),
-                weather = dataSeries.weather,
-                maxTemp = dataSeries.temp2m.max,
-                minTemp = dataSeries.temp2m.min,
-                windSpeed = dataSeries.wind10m_max,
-                isToday = isToday(dataSeries.date)
-            )
+        return weatherResponse.dataseries.mapNotNull { dataSeries ->
+            try {
+                // Проверяем, что у нас есть минимальные необходимые данные
+                if (dataSeries.date == 0 || dataSeries.weather == "unknown") {
+                    return@mapNotNull null
+                }
+
+                WeatherForecast(
+                    date = dataSeries.date,
+                    formattedDate = formatDate(dataSeries.date),
+                    dayOfWeek = getDayOfWeek(dataSeries.date),
+                    weather = dataSeries.weather,
+                    maxTemp = dataSeries.temp2m.max ?: 0, // Значение по умолчанию
+                    minTemp = dataSeries.temp2m.min ?: 0, // Значение по умолчанию
+                    windSpeed = dataSeries.wind10m_max,
+                    isToday = isToday(dataSeries.date)
+                )
+            } catch (_: Exception) {
+                null // Пропускаем элементы, которые не удалось преобразовать
+            }
         }
     }
 
     private fun formatDate(dateInt: Int): String {
-        val dateStr = dateInt.toString()
-        if (dateStr.length != 8) return dateInt.toString()
+        try {
+            val dateStr = dateInt.toString()
+            if (dateStr.length != 8) return dateInt.toString()
 
-        val year = dateStr.substring(0, 4).toInt()
-        val month = dateStr.substring(4, 6).toInt()
-        val day = dateStr.substring(6, 8).toInt()
+            val year = dateStr.substring(0, 4).toInt()
+            val month = dateStr.substring(4, 6).toInt()
+            val day = dateStr.substring(6, 8).toInt()
 
-        return "$day ${getMonthName(month)}"
+            return "$day ${getMonthName(month)}"
+        } catch (_: Exception) {
+            return dateInt.toString()
+        }
     }
 
     private fun getDayOfWeek(dateInt: Int): String {
-        val dateStr = dateInt.toString()
-        if (dateStr.length != 8) return ""
+        try {
+            val dateStr = dateInt.toString()
+            if (dateStr.length != 8) return ""
 
-        val year = dateStr.substring(0, 4).toInt()
-        val month = dateStr.substring(4, 6).toInt() - 1
-        val day = dateStr.substring(6, 8).toInt()
+            val year = dateStr.substring(0, 4).toInt()
+            val month = dateStr.substring(4, 6).toInt() - 1
+            val day = dateStr.substring(6, 8).toInt()
 
-        val calendar = Calendar.getInstance().apply {
-            set(year, month, day)
-        }
+            val calendar = Calendar.getInstance().apply {
+                set(year, month, day)
+            }
 
-        return when (calendar.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.MONDAY -> context.getString(R.string.monday)
-            Calendar.TUESDAY -> context.getString(R.string.tuesday)
-            Calendar.WEDNESDAY -> context.getString(R.string.wednesday)
-            Calendar.THURSDAY -> context.getString(R.string.thursday)
-            Calendar.FRIDAY -> context.getString(R.string.friday)
-            Calendar.SATURDAY -> context.getString(R.string.saturday)
-            Calendar.SUNDAY -> context.getString(R.string.sunday)
-            else -> ""
+            return when (calendar.get(Calendar.DAY_OF_WEEK)) {
+                Calendar.MONDAY -> context.getString(R.string.monday)
+                Calendar.TUESDAY -> context.getString(R.string.tuesday)
+                Calendar.WEDNESDAY -> context.getString(R.string.wednesday)
+                Calendar.THURSDAY -> context.getString(R.string.thursday)
+                Calendar.FRIDAY -> context.getString(R.string.friday)
+                Calendar.SATURDAY -> context.getString(R.string.saturday)
+                Calendar.SUNDAY -> context.getString(R.string.sunday)
+                else -> ""
+            }
+        } catch (_: Exception) {
+            return ""
         }
     }
 
@@ -79,18 +96,22 @@ class WeatherMapper(
     }
 
     private fun isToday(dateInt: Int): Boolean {
-        val dateStr = dateInt.toString()
-        if (dateStr.length != 8) return false
+        try {
+            val dateStr = dateInt.toString()
+            if (dateStr.length != 8) return false
 
-        val today = Calendar.getInstance()
-        val year = today.get(Calendar.YEAR)
-        val month = today.get(Calendar.MONTH) + 1
-        val day = today.get(Calendar.DAY_OF_MONTH)
+            val today = Calendar.getInstance()
+            val year = today.get(Calendar.YEAR)
+            val month = today.get(Calendar.MONTH) + 1
+            val day = today.get(Calendar.DAY_OF_MONTH)
 
-        val apiYear = dateStr.substring(0, 4).toInt()
-        val apiMonth = dateStr.substring(4, 6).toInt()
-        val apiDay = dateStr.substring(6, 8).toInt()
+            val apiYear = dateStr.substring(0, 4).toInt()
+            val apiMonth = dateStr.substring(4, 6).toInt()
+            val apiDay = dateStr.substring(6, 8).toInt()
 
-        return year == apiYear && month == apiMonth && day == apiDay
+            return year == apiYear && month == apiMonth && day == apiDay
+        } catch (_: Exception) {
+            return false
+        }
     }
 }

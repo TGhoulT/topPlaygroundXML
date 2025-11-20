@@ -4,6 +4,7 @@ import com.example.topplaygroundxml.core.data.local.AppDatabase
 import com.example.topplaygroundxml.core.data.remote.RetrofitClient
 import com.example.topplaygroundxml.features.auth.data.repository.AuthRepositoryImpl
 import com.example.topplaygroundxml.features.auth.domain.repository.AuthRepository
+import com.example.topplaygroundxml.features.auth.domain.validation.Validator
 import com.example.topplaygroundxml.features.auth.presentation.viewmodel.AuthViewModel
 import com.example.topplaygroundxml.features.calculator.data.repository.CalculatorRepositoryImpl
 import com.example.topplaygroundxml.features.calculator.domain.repository.CalculatorRepository
@@ -24,7 +25,8 @@ val appModule = module {
 
     // Аутентификация
     single<AuthRepository> { AuthRepositoryImpl(get()) }
-    viewModel { AuthViewModel(get()) }
+    single { Validator(get()) }
+    viewModel { AuthViewModel(get(), get()) }
 
     // Список авто
     viewModel { CarListViewModel() }

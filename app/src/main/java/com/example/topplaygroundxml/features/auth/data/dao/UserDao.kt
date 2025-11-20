@@ -2,6 +2,7 @@ package com.example.topplaygroundxml.features.auth.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.topplaygroundxml.features.auth.data.entity.User
 
@@ -9,10 +10,6 @@ import com.example.topplaygroundxml.features.auth.data.entity.User
 interface UserDao {
     @Query("SELECT * FROM users WHERE email = :email AND password = :password")
     suspend fun getUser(email: String, password: String): User?
-
-    @Query("SELECT * FROM users WHERE email = :email")
-    suspend fun getUserByEmail(email: String): User?
-
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertUser(user: User): Long
 }

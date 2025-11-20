@@ -14,15 +14,10 @@ class AuthRepositoryImpl(
 
     override suspend fun register(email: String, password: String): Boolean {
         return try {
-            val existingUser = userDao.getUserByEmail(email)
-            if (existingUser != null) {
-                false // User already exists
-            } else {
-                val user = User(email = email, password = password)
-                userDao.insertUser(user) > 0
-            }
+            val user = User(email = email, password = password)
+            userDao.insertUser(user) > 0
         } catch (_: Exception) {
-            false
+            false //Пользователь уже существует
         }
     }
 }

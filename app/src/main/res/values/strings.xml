@@ -12,6 +12,21 @@
     <string name="no_account">Нет аккаунта? Зарегистрируйтесь</string>
     <string name="have_account">Есть аккаунт? Войдите</string>
 
+    <!-- Строки для ошибок валидации -->
+    <string name="error_email_empty">Поле email не может быть пустым</string>
+    <string name="error_password_empty">Поле пароль не может быть пустым</string>
+    <string name="error_confirm_password_empty">Поле подтверждение пароля не может быть пустым</string>
+    <string name="error_passwords_not_match">Пароли не совпадают</string>
+    <string name="error_password_too_short">Пароль должен содержать минимум 6 символов</string>
+    <string name="error_invalid_email">Некорректный формат email</string>
+
+    <!-- Ошибки авторизации и регистрации -->
+    <string name="error_invalid_credentials">Неверный email или пароль</string>
+    <string name="error_user_already_exists">Пользователь с таким email уже существует</string>
+    <string name="error_login_generic">Ошибка при входе: %s</string>
+    <string name="error_registration_generic">Ошибка при регистрации: %s</string>
+
+
     <!-- Иконки для bottom navigation -->
     <string name="weather_title">Погода</string>
     <string name="calculator_title">Калькулятор</string>
@@ -32,6 +47,7 @@
     <string name="city_not_found">Город не найден</string>
     <string name="forecast_title">Прогноз на 7 дней</string>
     <string name="weather_data_placeholder">Данные о погоде появятся здесь</string>
+    <string name="not_available">N/A</string>
 
     <!-- Weather Details -->
     <string name="weather_details_format">Погода: %1$s\nТемпература: днем %2$d°C, ночью %3$d°C\nВетер: %4$s м/с</string>
@@ -77,6 +93,8 @@
 
     <!-- Weather Repository -->
     <string name="city_not_found_error">Город %s не найден</string>
+    <string name="no_weather_data">Нет данных о погоде</string>
+    <string name="weather_unknown_error">Неизвестная ошибка</string>
 
     <!-- Calculator -->
     <string name="default_expression">0</string>

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.topplaygroundxml.R
 import com.example.topplaygroundxml.databinding.FragmentLoginBinding
 import com.example.topplaygroundxml.features.auth.presentation.viewmodel.AuthViewModel
+import com.example.topplaygroundxml.features.auth.presentation.viewmodel.state.LoginState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,15 +43,15 @@ class LoginFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loginState.collect { state ->
                     when (state) {
-                        is AuthViewModel.LoginState.Loading -> {
+                        is LoginState.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                             binding.loginButton.isEnabled = false
                         }
-                        is AuthViewModel.LoginState.Success -> {
+                        is LoginState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             findNavController().navigate(R.id.action_loginFragment_to_weatherFragment)
                         }
-                        is AuthViewModel.LoginState.Error -> {
+                        is LoginState.Error -> {
                             binding.progressBar.visibility = View.GONE
                             binding.loginButton.isEnabled = true
                             binding.errorText.text = state.message

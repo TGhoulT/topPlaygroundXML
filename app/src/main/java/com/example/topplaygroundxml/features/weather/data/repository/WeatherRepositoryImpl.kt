@@ -23,14 +23,23 @@ class WeatherRepositoryImpl(
     )
 
     override suspend fun getWeatherForecast(cityName: String): List<WeatherForecast> {
-        val coordinates = cityCoordinates[cityName]
-            ?: throw IllegalArgumentException(context.getString(R.string.city_not_found_error, cityName))
+        try {
+            val coordinates = cityCoordinates[cityName]
+                ?: throw IllegalArgumentException(context.getString(R.string.city_not_found_error, cityName))
 
-        val weatherResponse = RetrofitClient.weatherApi.getWeatherForecast(
-            longitude = coordinates.second,
-            latitude = coordinates.first
-        )
+            val weatherResponse = RetrofitClient.weatherApi.getWeatherForecast(
+                longitude = coordinates.second,
+                latitude = coordinates.first
+            )
 
-        return mapper.toWeatherForecastList(weatherResponse)
+            // Проверяем, что ответ не пустой
+            if (weatherResponse.dataseries.isEmpty()) {
+                throw IllegalStateException(context.getString(R.string.no_weather_data))
+            }
+
+            return mapper.toWeatherForecastList(weatherResponse)
+        } catch (e: Exception) {
+            throw Exception(context.getString(R.string.weather_error, e.message ?: R.string.weather_unknown_error))
+        }
     }
 }
